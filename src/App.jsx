@@ -122,20 +122,23 @@ const FlipCard = ({ frontImage, frontLabel, frontTitle, backText, backStats }) =
           style={{ backfaceVisibility: 'hidden' }}
         >
           <ChromeCard className="h-full">
-            <div className="relative h-full overflow-hidden">
-              <img 
-                src={frontImage} 
-                alt={frontTitle}
-                className="w-full h-full object-cover opacity-75 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                <span className="text-blue-500 text-[9px] tracking-[0.5em] uppercase font-bold block mb-2">{frontLabel}</span>
-                <h4 className="text-lg md:text-2xl font-black uppercase tracking-tighter italic text-white leading-tight">{frontTitle}</h4>
+            <div className="relative h-full flex flex-col overflow-hidden">
+              {/* Image — top half, unobstructed */}
+              <div className="relative w-full h-[55%] overflow-hidden flex-shrink-0">
+                <img 
+                  src={frontImage} 
+                  alt={frontTitle}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
+                />
+                <div className="absolute top-4 right-4 flex items-center gap-2 opacity-0 group-hover:opacity-60 transition-opacity duration-300">
+                  <span className="text-[8px] text-white uppercase tracking-widest font-bold drop-shadow-lg">Tap to learn</span>
+                  <RotateCcw size={12} className="text-white drop-shadow-lg" />
+                </div>
               </div>
-              <div className="absolute top-4 right-4 flex items-center gap-2 opacity-0 group-hover:opacity-60 transition-opacity duration-300">
-                <span className="text-[8px] text-white uppercase tracking-widest font-bold">Tap to learn</span>
-                <RotateCcw size={12} className="text-white" />
+              {/* Text — bottom portion */}
+              <div className="flex-1 p-5 md:p-6 flex flex-col justify-center">
+                <span className="text-blue-500 text-[9px] tracking-[0.5em] uppercase font-bold block mb-2">{frontLabel}</span>
+                <h4 className="text-lg md:text-xl font-black uppercase tracking-tighter italic text-white leading-tight">{frontTitle}</h4>
               </div>
             </div>
           </ChromeCard>
@@ -303,7 +306,7 @@ const Hero = () => (
         transition={{ delay: 0.2 }}
         className="inline-block px-4 py-1 border border-blue-600/30 bg-blue-600/5 text-blue-500 text-[10px] tracking-[0.5em] uppercase mb-12 animate-pulse"
       >
-        Simulated. Scanned. Sculpted.
+        Motorsport Aerodynamics Surface Technology
       </motion.div>
       
       <motion.div 
@@ -404,7 +407,7 @@ const App = () => {
                 },
                 { 
                   icon: Box, 
-                  title: "Additive Fabrication", 
+                  title: "Additive 3D Printed Fabrication", 
                   desc: "Production-grade additive manufacturing unlocks geometries that injection molding and hand layup can't touch. Complex internal structures, optimized wall thicknesses — printed with purpose." 
                 }
               ].map((feature, i) => (
@@ -521,15 +524,14 @@ const App = () => {
               {...fadeInUp}
               className="flex flex-col items-center text-center"
             >
-              <div className="text-lg md:text-2xl font-light tracking-[0.2em] text-blue-600/80 mb-16 flex flex-wrap justify-center gap-4 items-center uppercase">
+              <div className="text-lg md:text-2xl font-light tracking-[0.2em] text-blue-600/80 mb-6 flex flex-wrap justify-center gap-4 items-center uppercase">
                 <span>Precision</span>
                 <span className="text-zinc-800 font-thin">|</span>
                 <span>Engineered</span>
                 <span className="text-zinc-800 font-thin">|</span>
                 <span>3D Printed</span>
-                <span className="text-zinc-800 font-thin">|</span>
-                <span className="font-bold text-white tracking-[0.4em]">Aero Components</span>
               </div>
+              <h3 className="font-bold text-white tracking-[0.4em] uppercase text-lg md:text-2xl mb-16">Aero Components</h3>
               
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full">
                 {['Splitters', 'Diffusers', 'Canards', 'Vortex Generators'].map((comp, idx) => (
