@@ -131,7 +131,7 @@ const Hero = () => (
         transition={{ delay: 0.2 }}
         className="inline-block px-4 py-1 border border-blue-600/30 bg-blue-600/5 text-blue-500 text-[10px] tracking-[0.5em] uppercase mb-12 animate-pulse"
       >
-        Simulated. Scanned. Sculpted.
+        Motorsport Aerodynamics Surface Technology.
       </motion.div>
       
       {/* ── Hero Logo (replaces placeholder) ── */}
@@ -172,7 +172,7 @@ const Hero = () => (
         className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6"
       >
         <button className="group relative px-10 py-4 bg-blue-700 hover:bg-blue-600 text-white font-bold uppercase tracking-widest text-xs transition-all overflow-hidden">
-          <span className="relative z-10">Launch Configurator</span>
+          <span className="relative z-10"><Custom> </Custom></span>
           <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
         </button>
         <button className="px-10 py-4 border border-zinc-700 hover:border-white text-white font-bold uppercase tracking-widest text-xs transition-all">
@@ -218,7 +218,7 @@ const App = () => {
               {[
                 { icon: Layers, title: "3D Laser Scanning", desc: "Sub-millimeter precision 3D scanning ensures every component fits the factory chassis with OEM+ integrity." },
                 { icon: Zap, title: "CFD Simulation", desc: "Computational Fluid Dynamics testing validates our designs, ensuring real-world downforce and reduced drag." },
-                { icon: Box, title: "Additive Fabrication", desc: "High-performance 3D printing allows for complex geometries that traditional manufacturing simply cannot replicate." }
+                { icon: Box, title: "Additive 3D Printed Fabrication", desc: "High-performance 3D printing allows for complex geometries that traditional manufacturing simply cannot replicate." }
               ].map((feature, i) => (
                 <motion.div 
                   key={i} 
@@ -234,8 +234,8 @@ const App = () => {
           </div>
         </section>
 
-        {/* Flagship Product Showcase */}
-        <section id="flagship" className="py-32 relative overflow-hidden bg-black">
+        {/* AeroAdix Product Showcase */}
+        <section id="AeroAdix" className="py-32 relative overflow-hidden bg-black">
           <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-24 items-center">
             <motion.div 
               initial={{ opacity: 0, x: -30 }}
@@ -243,13 +243,13 @@ const App = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <span className="text-blue-600 text-[10px] font-black uppercase tracking-[0.5em]">Flagship Development</span>
+              <span className="text-blue-600 text-[10px] font-black uppercase tracking-[0.5em]">Development</span>
               <h2 className="text-6xl md:text-8xl font-black italic tracking-tighter mt-4 mb-8">
                 R35 GTR <br />
                 <span className="bg-gradient-to-r from-zinc-500 via-zinc-200 to-zinc-500 bg-clip-text text-transparent italic">STAGE 1 AERO</span>
               </h2>
               <p className="text-zinc-400 text-lg mb-12 leading-relaxed font-light">
-                Our flagship R35 GTR canards are developed to provide front-end bite without disrupting the silhouette.
+                Our R35 GTR canards are developed to provide front-end bite without disrupting the silhouette.
               </p>
               <ul className="space-y-6 mb-12">
                 {['Precision Fitment', 'High-Temp UV Stable Materials', 'CFD Validated Profile'].map((item, idx) => (
@@ -274,7 +274,7 @@ const App = () => {
                   <div className="bg-black rounded-lg p-12 aspect-square flex flex-col items-center justify-center relative overflow-hidden group">
                      <div className="w-56 h-14 bg-gradient-to-r from-zinc-800 to-blue-900/50 skew-x-[30deg] border-r-4 border-blue-600 shadow-2xl transition-transform duration-700 group-hover:scale-110" />
                      <div className="mt-16 text-center">
-                        <span className="text-zinc-600 text-[9px] tracking-widest uppercase">Variant: Gunmetal Chrome</span>
+                        <span className="text-zinc-600 text-[9px] tracking-widest uppercase">Placeholder</span>
                         <h4 className="text-2xl font-black text-white uppercase italic mt-2">Nismo-Spec Canard</h4>
                      </div>
                   </div>
