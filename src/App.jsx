@@ -3,25 +3,30 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Wind, 
   Box, 
+  Cpu, 
   ShieldCheck, 
   ArrowRight, 
+  ChevronRight,
   Menu,
   X,
   Layers,
   Zap,
-  RotateCcw
+  Maximize,
+  Activity
 } from 'lucide-react';
 
 /**
- * AEROADIX - Single Page Application
- * An Automotive Aero Optimization Company — A Division of 3DBoomPrint
+ * AEROADIX - Optimized Single Page Application (SPA)
+ * Layout: Single Page (Sections)
+ * Build: Vite/React optimized with Framer Motion
  * 
- * IMAGE ASSETS — place all in /public/assets/:
- *   aeroadix-logo.png          → Hero logo
- *   gtr-canards-installed.jpg  → Flip card
- *   cfd-streamlines.jpg        → Flip card
- *   cfd-heatmap.jpg            → Flip card
- *   cfd-wind-tunnel.jpg        → Flip card
+ * IMAGE ASSET SETUP:
+ * Place "aeroadix-logo.png" in your /public/assets/ directory.
+ * The Hero component references it at "/assets/aeroadix-logo.png".
+ * 
+ * Alternative — Vite import method (uncomment below):
+ *   import aeroadixLogo from './assets/aeroadix-logo.png';
+ *   Then swap src="/assets/aeroadix-logo.png" → src={aeroadixLogo}
  */
 
 // --- Shared Animation Variants ---
@@ -34,195 +39,16 @@ const fadeInUp = {
 
 const staggerContainer = {
   initial: {},
-  whileInView: { transition: { staggerChildren: 0.15 } }
+  whileInView: { transition: { staggerChildren: 0.1 } }
 };
 
-// --- Chrome Card Wrapper ---
-// Gives every card a subtle metallic border with a top-edge highlight
-const ChromeCard = ({ children, className = "", hoverBorderColor = "rgba(148,163,184,0.35)" }) => (
-  <div 
-    className={`relative group ${className}`}
-    style={{ padding: '1px' }}
-  >
-    {/* Metallic gradient border */}
-    <div 
-      className="absolute inset-0 rounded-sm opacity-60 group-hover:opacity-100 transition-opacity duration-500"
-      style={{
-        background: `linear-gradient(160deg, rgba(200,200,210,0.25) 0%, rgba(120,120,130,0.12) 30%, rgba(80,80,90,0.08) 60%, rgba(140,140,150,0.2) 100%)`
-      }}
-    />
-    {/* Top edge shine */}
-    <div 
-      className="absolute top-0 left-[10%] right-[10%] h-[1px] opacity-20 group-hover:opacity-40 transition-opacity duration-500"
-      style={{
-        background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent)'
-      }}
-    />
-    {/* Inner card */}
-    <div className="relative rounded-sm bg-[#0a0a0a]">
-      {children}
-    </div>
-  </div>
-);
+// --- Sub-Components ---
 
-// --- Brand Mark ---
-const BrandMark = ({ size = 32, className = "" }) => (
-  <div 
-    className={`relative flex items-center justify-center rotate-45 ${className}`}
-    style={{ width: size, height: size }}
-  >
-    <div 
-      className="absolute inset-0 rounded-[4px]"
-      style={{
-        background: 'linear-gradient(135deg, #1e40af, #3b82f6, #1e40af)',
-        padding: '1.5px',
-      }}
-    >
-      <div className="w-full h-full rounded-[3px] bg-black/80 backdrop-blur-sm" />
-    </div>
-    <svg 
-      viewBox="0 0 20 20" 
-      className="-rotate-45"
-      style={{ width: size * 0.55, height: size * 0.55 }}
-    >
-      <defs>
-        <linearGradient id="layerGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#93c5fd" />
-          <stop offset="100%" stopColor="#3b82f6" />
-        </linearGradient>
-      </defs>
-      <rect x="4" y="5" width="12" height="1.8" rx="0.5" fill="url(#layerGrad)" opacity="0.6" />
-      <rect x="3" y="9" width="14" height="1.8" rx="0.5" fill="url(#layerGrad)" opacity="0.8" />
-      <rect x="2" y="13" width="16" height="1.8" rx="0.5" fill="url(#layerGrad)" opacity="1" />
-    </svg>
-  </div>
-);
-
-// --- Flip Card ---
-const FlipCard = ({ frontImage, frontLabel, frontTitle, backText, backStats }) => {
-  const [isFlipped, setIsFlipped] = useState(false);
-  
-  return (
-    <motion.div 
-      variants={fadeInUp}
-      className="cursor-pointer"
-      style={{ perspective: '1200px' }}
-      onClick={() => setIsFlipped(!isFlipped)}
-    >
-      <div 
-        className="relative w-full aspect-[4/5] transition-transform duration-700 ease-in-out"
-        style={{ 
-          transformStyle: 'preserve-3d',
-          transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'
-        }}
-      >
-        {/* Front */}
-        <div 
-          className="absolute inset-0 overflow-hidden rounded-sm group"
-          style={{ backfaceVisibility: 'hidden' }}
-        >
-          <ChromeCard className="h-full">
-            <div className="relative h-full overflow-hidden">
-              <img 
-                src={frontImage} 
-                alt={frontTitle}
-                className="w-full h-full object-cover opacity-75 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                <span className="text-blue-500 text-[9px] tracking-[0.5em] uppercase font-bold block mb-2">{frontLabel}</span>
-                <h4 className="text-lg md:text-2xl font-black uppercase tracking-tighter italic text-white leading-tight">{frontTitle}</h4>
-              </div>
-              <div className="absolute top-4 right-4 flex items-center gap-2 opacity-0 group-hover:opacity-60 transition-opacity duration-300">
-                <span className="text-[8px] text-white uppercase tracking-widest font-bold">Tap to learn</span>
-                <RotateCcw size={12} className="text-white" />
-              </div>
-            </div>
-          </ChromeCard>
-        </div>
-        
-        {/* Back */}
-        <div 
-          className="absolute inset-0 rounded-sm"
-          style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
-        >
-          <ChromeCard className="h-full">
-            <div className="p-6 md:p-8 flex flex-col justify-between h-full relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-40 h-40 bg-blue-600/5 blur-[60px] rounded-full" />
-              <div className="relative z-10">
-                <span className="text-blue-500 text-[9px] tracking-[0.5em] uppercase font-bold block mb-3">{frontLabel}</span>
-                <h4 className="text-lg font-black uppercase tracking-tighter italic text-white mb-5">{frontTitle}</h4>
-                <div className="w-8 h-[1px] bg-gradient-to-r from-zinc-500 to-transparent mb-5" />
-                <p className="text-zinc-400 text-sm leading-relaxed">{backText}</p>
-              </div>
-              {backStats && (
-                <div className="relative z-10 mt-6 pt-5 border-t border-zinc-800/60 grid grid-cols-2 gap-4">
-                  {backStats.map((stat, i) => (
-                    <div key={i}>
-                      <span className="text-blue-500 text-lg font-black">{stat.value}</span>
-                      <span className="block text-zinc-600 text-[8px] tracking-[0.3em] uppercase font-bold mt-1">{stat.label}</span>
-                    </div>
-                  ))}
-                </div>
-              )}
-              <div className="absolute bottom-4 right-4 opacity-40">
-                <RotateCcw size={12} className="text-blue-500" />
-              </div>
-            </div>
-          </ChromeCard>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
-
-// --- Flip card data ---
-const processCards = [
-  {
-    frontImage: "/assets/cfd-streamlines.jpg",
-    frontLabel: "Step 01 — Analyze",
-    frontTitle: "Streamline Analysis",
-    backText: "Colored streamlines trace the path air takes as it flows over a component. Each color represents velocity — cool blues indicate slower air, hot reds show acceleration. This tells us exactly how a shape redirects airflow and where turbulence begins.",
-    backStats: [
-      { value: "3,740", label: "cm/s Peak Velocity" },
-      { value: "2D + 3D", label: "Multi-Axis Views" }
-    ]
-  },
-  {
-    frontImage: "/assets/cfd-heatmap.jpg",
-    frontLabel: "Step 02 — Map",
-    frontTitle: "Velocity Field Mapping",
-    backText: "The velocity magnitude field reveals the full aerodynamic picture. High-speed zones (red) indicate where air accelerates around the canard profile, generating low pressure — the force that creates downforce. Blue zones downstream show the controlled wake.",
-    backStats: [
-      { value: "CFD", label: "Computational Fluid Dynamics" },
-      { value: "Real-Time", label: "Iterative Refinement" }
-    ]
-  },
-  {
-    frontImage: "/assets/cfd-wind-tunnel.jpg",
-    frontLabel: "Step 03 — Test",
-    frontTitle: "Virtual Wind Tunnel",
-    backText: "Before material is ever printed, each design runs through a full virtual wind tunnel. The simulation domain replicates real-world conditions — inlet velocity, boundary layers, ground effect — so we can validate performance digitally before committing to production.",
-    backStats: [
-      { value: "Zero", label: "Physical Prototypes Wasted" },
-      { value: "∞", label: "Design Iterations" }
-    ]
-  },
-  {
-    frontImage: "/assets/gtr-canards-installed.jpg",
-    frontLabel: "Step 04 — Validate",
-    frontTitle: "Real-World Fitment",
-    backText: "The final proof is on the car. Every canard is chassis-scanned and CFD-validated before it's printed, so the transition from simulation to street is seamless. Flow visualization overlays confirm the aerodynamic behavior matches our digital predictions.",
-    backStats: [
-      { value: "OEM+", label: "Fitment Standard" },
-      { value: "UV/Heat", label: "Stable Resin" }
-    ]
-  }
-];
-
-// --- Nav ---
 const NavLink = ({ href, children }) => (
-  <a href={href} className="hover:text-white transition-colors duration-300 relative group">
+  <a 
+    href={href} 
+    className="hover:text-white transition-colors duration-300 relative group"
+  >
     {children}
     <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-blue-600 transition-all duration-300 group-hover:w-full" />
   </a>
@@ -233,17 +59,18 @@ const Navbar = memo(({ scrolled, isMenuOpen, setIsMenuOpen }) => (
     scrolled ? 'bg-black/90 backdrop-blur-xl py-4 border-zinc-800' : 'bg-transparent py-8 border-transparent'
   }`}>
     <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-      <a href="#" className="flex items-center gap-3 group cursor-pointer">
-        <BrandMark size={32} className="group-hover:rotate-0 transition-transform duration-500" />
+      <div className="flex items-center gap-2 group cursor-pointer">
+        <div className="h-8 w-8 bg-blue-700 rounded-sm flex items-center justify-center rotate-45 group-hover:rotate-0 transition-transform duration-500">
+          <Wind size={18} className="-rotate-45 group-hover:rotate-0 transition-transform text-white" />
+        </div>
         <span className="text-2xl font-black tracking-tighter italic">
           AERO<span className="text-blue-600">ADIX</span>
         </span>
-      </a>
+      </div>
 
       <div className="hidden md:flex items-center space-x-8 text-[10px] uppercase tracking-[0.3em] font-bold text-gray-400">
         <NavLink href="#engineering">Engineering</NavLink>
         <NavLink href="#flagship">R35 GTR</NavLink>
-        <NavLink href="#process">The Process</NavLink>
         <NavLink href="#aerocomponents">Aero Components</NavLink>
         <NavLink href="#subsidiary">3DBoomPrint</NavLink>
         <button className="px-6 py-2 border border-zinc-700 hover:border-white transition-all text-white ml-4">
@@ -264,7 +91,7 @@ const Navbar = memo(({ scrolled, isMenuOpen, setIsMenuOpen }) => (
           exit={{ opacity: 0, y: -20 }}
           className="absolute top-full left-0 w-full bg-zinc-950 border-b border-zinc-800 py-10 flex flex-col items-center gap-6 md:hidden"
         >
-          {['Engineering', 'R35 GTR', 'The Process', 'Aero Components', '3DBoomPrint'].map((item) => (
+          {['Engineering', 'R35 GTR', 'Aero Components', '3DBoomPrint'].map((item) => (
             <a 
               key={item} 
               href={`#${item.toLowerCase().replace(/\s+/g, '')}`} 
@@ -280,15 +107,15 @@ const Navbar = memo(({ scrolled, isMenuOpen, setIsMenuOpen }) => (
   </nav>
 ));
 
-// --- Hero ---
 const Hero = () => (
   <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
+    {/* Background streamline SVG */}
     <div className="absolute inset-0 z-0 opacity-20">
       <div className="absolute inset-0 bg-gradient-to-b from-blue-900/10 via-transparent to-transparent" />
       <svg viewBox="0 0 800 300" className="w-full h-full object-cover fill-none stroke-zinc-800 stroke-[0.3]">
-        <path d="M0,150 Q200,50 400,150 T800,150" />
-        <path d="M0,160 Q200,60 400,160 T800,160" />
-        <path d="M0,170 Q200,70 400,170 T800,170" />
+         <path d="M0,150 Q200,50 400,150 T800,150" />
+         <path d="M0,160 Q200,60 400,160 T800,160" />
+         <path d="M0,170 Q200,70 400,170 T800,170" />
       </svg>
     </div>
 
@@ -297,50 +124,47 @@ const Hero = () => (
       animate={{ opacity: 1 }}
       className="relative z-10 text-center px-6 w-full max-w-5xl flex flex-col items-center"
     >
+      {/* Tagline pill */}
       <motion.div 
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
         className="inline-block px-4 py-1 border border-blue-600/30 bg-blue-600/5 text-blue-500 text-[10px] tracking-[0.5em] uppercase mb-12 animate-pulse"
       >
-        Simulated. Scanned. Sculpted.
+        Motorsport Aerodynamics Surface Technology.
       </motion.div>
       
+      {/* ── Hero Logo (replaces placeholder) ── */}
       <motion.div 
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
         className="w-full max-w-3xl mb-8 relative group"
       >
+        {/* Ambient blue glow */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
           <div className="w-3/4 h-3/4 bg-blue-600/8 blur-[80px] rounded-full group-hover:bg-blue-600/14 transition-all duration-700" />
         </div>
+        
         <img 
           src="/assets/aeroadix-logo.png"
-          alt="AeroAdix — An Automotive Aero Optimization Company"
+          alt="AeroAdix — Bespoke Luxury Automotive Aerodynamics"
           className="w-full h-auto max-h-64 object-contain relative z-10 drop-shadow-[0_0_40px_rgba(37,99,235,0.15)] group-hover:drop-shadow-[0_0_60px_rgba(37,99,235,0.25)] transition-all duration-700"
           draggable="false"
         />
       </motion.div>
       
+      {/* Subheadline */}
       <motion.p 
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6 }}
         className="text-gray-400 text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed tracking-wide"
       >
-        An Automotive Aero Optimization Company. Design, engineering, and development of functional aerodynamic components for elite performance vehicles.
+        Design, engineering, and development of functional aerodynamic components for elite performance vehicles.
       </motion.p>
 
-      <motion.span
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.7 }}
-        className="text-zinc-700 text-[9px] tracking-[0.4em] uppercase font-bold mt-4"
-      >
-        A Division of 3DBoomPrint
-      </motion.span>
-
+      {/* CTA buttons */}
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -348,22 +172,22 @@ const Hero = () => (
         className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6"
       >
         <button className="group relative px-10 py-4 bg-blue-700 hover:bg-blue-600 text-white font-bold uppercase tracking-widest text-xs transition-all overflow-hidden">
-          <span className="relative z-10">Explore the Platform</span>
+          <span className="relative z-10">Custom Build</span>
           <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
         </button>
         <button className="px-10 py-4 border border-zinc-700 hover:border-white text-white font-bold uppercase tracking-widest text-xs transition-all">
-          Our Engineering Process
+          The CFD Process
         </button>
       </motion.div>
     </motion.div>
     
+    {/* Scroll indicator */}
     <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-20">
       <div className="w-[1px] h-16 bg-gradient-to-b from-white to-transparent" />
     </div>
   </section>
 );
 
-// --- Main App ---
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -381,7 +205,7 @@ const App = () => {
       <main>
         <Hero />
 
-        {/* ── Engineering Section ── */}
+        {/* Engineering Section */}
         <section id="engineering" className="py-32 bg-[#050505]">
           <div className="max-w-7xl mx-auto px-6">
             <motion.div 
@@ -389,41 +213,29 @@ const App = () => {
               initial="initial"
               whileInView="whileInView"
               viewport={{ once: true }}
-              className="grid md:grid-cols-3 gap-8"
+              className="grid md:grid-cols-3 gap-12"
             >
               {[
-                { 
-                  icon: Layers, 
-                  title: "3D Laser Scanning", 
-                  desc: "Every build starts with a sub-millimeter scan of the factory chassis. No assumptions — just data. The result is aero that fits like it came from the OEM." 
-                },
-                { 
-                  icon: Zap, 
-                  title: "CFD Simulation", 
-                  desc: "Each profile is tested in full CFD simulation before it ever touches material. Downforce targets, drag coefficients, pressure mapping — validated digitally, verified physically." 
-                },
-                { 
-                  icon: Box, 
-                  title: "Additive Fabrication", 
-                  desc: "Production-grade additive manufacturing unlocks geometries that injection molding and hand layup can't touch. Complex internal structures, optimized wall thicknesses — printed with purpose." 
-                }
+                { icon: Layers, title: "3D Laser Scanning", desc: "Sub-millimeter precision 3D scanning ensures every component fits the factory chassis with OEM+ integrity." },
+                { icon: Zap, title: "CFD Simulation", desc: "Computational Fluid Dynamics testing validates our designs, ensuring real-world downforce and reduced drag." },
+                { icon: Box, title: "Additive 3D Printed Fabrication", desc: "High-performance 3D printing allows for complex geometries that traditional manufacturing simply cannot replicate." }
               ].map((feature, i) => (
-                <motion.div key={i} variants={fadeInUp}>
-                  <ChromeCard>
-                    <div className="p-10 backdrop-blur-sm">
-                      <feature.icon className="text-blue-600 mb-8 group-hover:scale-110 transition-transform duration-500" size={32} />
-                      <h3 className="text-xl font-black mb-4 uppercase tracking-tighter">{feature.title}</h3>
-                      <p className="text-zinc-500 text-sm leading-loose">{feature.desc}</p>
-                    </div>
-                  </ChromeCard>
+                <motion.div 
+                  key={i} 
+                  variants={fadeInUp}
+                  className="group p-10 bg-zinc-900/30 border border-zinc-800/50 hover:border-blue-700/50 transition-all duration-500 backdrop-blur-sm"
+                >
+                  <feature.icon className="text-blue-600 mb-8 group-hover:scale-110 transition-transform duration-500" size={32} />
+                  <h3 className="text-xl font-black mb-4 uppercase tracking-tighter">{feature.title}</h3>
+                  <p className="text-zinc-500 text-sm leading-loose">{feature.desc}</p>
                 </motion.div>
               ))}
             </motion.div>
           </div>
         </section>
 
-        {/* ── Flagship R35 GTR ── */}
-        <section id="flagship" className="py-32 relative overflow-hidden bg-black">
+        {/* AeroAdix Product Showcase */}
+        <section id="AeroAdix" className="py-32 relative overflow-hidden bg-black">
           <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-24 items-center">
             <motion.div 
               initial={{ opacity: 0, x: -30 }}
@@ -431,16 +243,16 @@ const App = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <span className="text-blue-600 text-[10px] font-black uppercase tracking-[0.5em]">First Platform Release</span>
+              <span className="text-blue-600 text-[10px] font-black uppercase tracking-[0.5em]">Development</span>
               <h2 className="text-6xl md:text-8xl font-black italic tracking-tighter mt-4 mb-8">
                 R35 GTR <br />
-                <span className="bg-gradient-to-r from-zinc-500 via-zinc-200 to-zinc-500 bg-clip-text text-transparent italic">STAGE 1 AERO KIT</span>
+                <span className="bg-gradient-to-r from-zinc-500 via-zinc-200 to-zinc-500 bg-clip-text text-transparent italic">STAGE 1 AERO</span>
               </h2>
               <p className="text-zinc-400 text-lg mb-12 leading-relaxed font-light">
-                Front-end aero designed around the R35's factory body lines. Canards engineered to generate real front-axle load without cutting into the bumper or fighting the car's proportions.
+                Our R35 GTR canards are developed to provide front-end bite without disrupting the silhouette.
               </p>
               <ul className="space-y-6 mb-12">
-                {['Chassis-Matched Fitment', 'UV-Stable / High-Temp Resin', 'CFD-Validated Downforce Profile'].map((item, idx) => (
+                {['Precision Fitment', 'High-Temp UV Stable Materials', 'CFD Validated Profile'].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-4 text-xs text-zinc-300 font-bold tracking-widest uppercase">
                     <div className="h-2 w-2 bg-blue-600 rotate-45" />
                     {item}
@@ -448,7 +260,7 @@ const App = () => {
                 ))}
               </ul>
               <button className="flex items-center gap-6 py-5 px-10 bg-white text-black font-black uppercase text-[10px] tracking-[0.3em] hover:bg-blue-600 hover:text-white transition-all">
-                View Build Details <ArrowRight size={16} />
+                Explore Component <ArrowRight size={16} />
               </button>
             </motion.div>
             
@@ -458,63 +270,21 @@ const App = () => {
               viewport={{ once: true }}
               className="relative"
             >
-              {/* Chrome-bordered product showcase */}
-              <div className="relative" style={{ padding: '1px' }}>
-                <div 
-                  className="absolute inset-0 rounded-lg"
-                  style={{
-                    background: 'linear-gradient(160deg, rgba(200,200,210,0.35) 0%, rgba(100,100,110,0.1) 40%, rgba(80,80,90,0.08) 60%, rgba(180,180,190,0.3) 100%)'
-                  }}
-                />
-                <div className="absolute top-0 left-[15%] right-[15%] h-[1px] opacity-30" style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent)' }} />
-                <div className="relative bg-black rounded-lg p-12 aspect-square flex flex-col items-center justify-center overflow-hidden group">
-                  <div className="w-56 h-14 bg-gradient-to-r from-zinc-800 to-blue-900/50 skew-x-[30deg] border-r-4 border-blue-600 shadow-2xl transition-transform duration-700 group-hover:scale-110" />
-                  <div className="mt-16 text-center">
-                    <span className="text-zinc-600 text-[9px] tracking-widest uppercase">Variant: Gunmetal Chrome</span>
-                    <h4 className="text-2xl font-black text-white uppercase italic mt-2">Nismo-Spec Canard</h4>
+               <div className="bg-gradient-to-br from-zinc-800 to-zinc-950 p-[1px] rounded-lg">
+                  <div className="bg-black rounded-lg p-12 aspect-square flex flex-col items-center justify-center relative overflow-hidden group">
+                     <div className="w-56 h-14 bg-gradient-to-r from-zinc-800 to-blue-900/50 skew-x-[30deg] border-r-4 border-blue-600 shadow-2xl transition-transform duration-700 group-hover:scale-110" />
+                     <div className="mt-16 text-center">
+                        <span className="text-zinc-600 text-[9px] tracking-widest uppercase">Placeholder</span>
+                        <h4 className="text-2xl font-black text-white uppercase italic mt-2">Nismo-Spec Canard</h4>
+                     </div>
                   </div>
-                </div>
-              </div>
-              <div className="absolute -top-10 -right-10 w-80 h-80 bg-blue-600/10 blur-[150px] rounded-full -z-10" />
+               </div>
+               <div className="absolute -top-10 -right-10 w-80 h-80 bg-blue-600/10 blur-[150px] rounded-full -z-10" />
             </motion.div>
           </div>
         </section>
 
-        {/* ── The Process — Flip Cards ── */}
-        <section id="process" className="py-32 bg-[#030303] border-t border-zinc-900">
-          <div className="max-w-7xl mx-auto px-6">
-            <motion.div {...fadeInUp} className="text-center mb-20">
-              <span className="text-blue-600 text-[10px] font-black uppercase tracking-[0.6em] block mb-4">How We Engineer</span>
-              <h2 className="text-4xl md:text-6xl font-black tracking-tighter italic mb-6">
-                The <span className="text-blue-600">CFD</span> Process
-              </h2>
-              <p className="text-zinc-500 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
-                Computational Fluid Dynamics is the backbone of everything we build. Every component is digitally simulated, pressure-mapped, and validated before it ever leaves the printer. Tap any card to learn what you're looking at.
-              </p>
-            </motion.div>
-
-            <motion.div 
-              variants={staggerContainer}
-              initial="initial"
-              whileInView="whileInView"
-              viewport={{ once: true }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
-            >
-              {processCards.map((card, i) => (
-                <FlipCard key={i} {...card} />
-              ))}
-            </motion.div>
-
-            <motion.p 
-              {...fadeInUp}
-              className="text-center text-zinc-700 text-[10px] tracking-[0.4em] uppercase font-bold mt-16"
-            >
-              All simulation data from AeroAdix R35 GTR canard development
-            </motion.p>
-          </div>
-        </section>
-
-        {/* ── Aero Components ── */}
+        {/* Aero Components Section */}
         <section id="aerocomponents" className="py-32 border-t border-zinc-900 bg-zinc-950/20">
           <div className="max-w-7xl mx-auto px-6">
             <motion.div 
@@ -531,18 +301,15 @@ const App = () => {
                 <span className="font-bold text-white tracking-[0.4em]">Aero Components</span>
               </div>
               
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 w-full">
                 {['Splitters', 'Diffusers', 'Canards', 'Vortex Generators'].map((comp, idx) => (
                   <motion.div 
                     key={idx}
                     whileHover={{ y: -5 }}
+                    className="border border-zinc-900 p-10 hover:bg-zinc-900/50 transition-colors group cursor-pointer"
                   >
-                    <ChromeCard>
-                      <div className="p-10 group cursor-pointer">
-                        <span className="block text-[9px] text-zinc-700 uppercase tracking-widest mb-4">Module 0{idx + 1}</span>
-                        <h4 className="text-xl font-black italic uppercase tracking-tighter group-hover:text-blue-600 transition-colors">{comp}</h4>
-                      </div>
-                    </ChromeCard>
+                    <span className="block text-[9px] text-zinc-700 uppercase tracking-widest mb-4">Module 0{idx + 1}</span>
+                    <h4 className="text-xl font-black italic uppercase tracking-tighter group-hover:text-blue-600 transition-colors">{comp}</h4>
                   </motion.div>
                 ))}
               </div>
@@ -550,7 +317,7 @@ const App = () => {
           </div>
         </section>
 
-        {/* ── DNA / 3DBoomPrint ── */}
+        {/* DNA Section */}
         <section id="subsidiary" className="py-32 bg-[#020202]">
           <div className="max-w-5xl mx-auto px-6 text-center">
             <motion.div {...fadeInUp}>
@@ -559,7 +326,7 @@ const App = () => {
                 A Division of <span className="text-zinc-600 not-italic">3DBoomPrint</span>
               </p>
             </motion.div>
-            <div className="grid md:grid-cols-2 gap-10 text-left">
+            <div className="grid md:grid-cols-2 gap-16 text-left">
               {[
                 { title: "Mission Statement", icon: ShieldCheck, content: "3DBoomPrint exists to bridge the gap between imagination and fabrication through cutting-edge CAD and precision manufacturing." },
                 { title: "AeroAdix Focus", icon: Wind, content: "We redefine customization by making high-quality, low-volume production accessible to the performance world." }
@@ -570,15 +337,12 @@ const App = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.2 }}
+                  className="p-12 border border-zinc-900 bg-black/50 hover:border-zinc-700 transition-colors"
                 >
-                  <ChromeCard>
-                    <div className="p-12">
-                      <h4 className="text-white font-black uppercase text-[10px] tracking-[0.4em] mb-8 flex items-center gap-4">
-                        <card.icon size={16} className="text-blue-600" /> {card.title}
-                      </h4>
-                      <p className="text-zinc-500 text-sm leading-loose italic">"{card.content}"</p>
-                    </div>
-                  </ChromeCard>
+                  <h4 className="text-white font-black uppercase text-[10px] tracking-[0.4em] mb-8 flex items-center gap-4">
+                    <card.icon size={16} className="text-blue-600" /> {card.title}
+                  </h4>
+                  <p className="text-zinc-500 text-sm leading-loose italic">"{card.content}"</p>
                 </motion.div>
               ))}
             </div>
@@ -586,23 +350,19 @@ const App = () => {
         </section>
       </main>
 
-      {/* ── Footer ── */}
+      {/* Footer */}
       <footer className="py-24 border-t border-zinc-900 px-6 bg-black relative z-10">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-16">
           <div>
-            <div className="flex items-center gap-3 mb-6">
-              <BrandMark size={28} />
-              <span className="text-4xl font-black italic">
-                AERO<span className="text-blue-600">ADIX</span>
-              </span>
+            <div className="text-4xl font-black italic mb-6">
+              AERO<span className="text-blue-600">ADIX</span>
             </div>
-            <p className="text-zinc-600 text-[10px] tracking-[0.4em] uppercase font-bold">Automotive Aero Optimization</p>
-            <p className="text-zinc-700 text-[9px] tracking-[0.3em] uppercase font-bold mt-2">A Division of 3DBoomPrint</p>
+            <p className="text-zinc-600 text-[10px] tracking-[0.4em] uppercase font-bold">Bespoke Luxury Automotive Aerodynamics</p>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-3 gap-20">
             {[
-              { title: "Network", links: ["3DBoomPrint", "Bespoke Fabrication"] },
+              { title: "Network", links: ["3DBoomPrint", "DynoComp Scottsdale", "Bespoke Fabrication"] },
               { title: "Platform", links: ["Nissan R35 GTR", "Porsche 911 GT3", "BMW M-Series"] }
             ].map((col, i) => (
               <div key={i}>
@@ -616,7 +376,7 @@ const App = () => {
         </div>
         
         <div className="max-w-7xl mx-auto mt-24 pt-12 border-t border-zinc-900/50 flex flex-col md:flex-row justify-between items-center text-[9px] text-zinc-700 tracking-[0.5em] uppercase font-bold">
-          <p>© 2026 AEROADIX — A Division of 3DBoomPrint. Phoenix, AZ.</p>
+          <p>© 2026 AEROADIX FABRICATION SOLUTIONS. Phoenix, AZ.</p>
           <div className="flex gap-10 mt-6 md:mt-0">
             <span className="hover:text-white cursor-pointer transition-colors">Privacy</span>
             <span className="hover:text-white cursor-pointer transition-colors">Documentation</span>
