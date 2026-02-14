@@ -172,7 +172,7 @@ const Hero = () => (
         className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6"
       >
         <button className="group relative px-10 py-4 bg-blue-700 hover:bg-blue-600 text-white font-bold uppercase tracking-widest text-xs transition-all overflow-hidden">
-          <span className="relative z-10"><Custom> </Custom></span>
+          <span className="relative z-10">Custom Build</span>
           <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
         </button>
         <button className="px-10 py-4 border border-zinc-700 hover:border-white text-white font-bold uppercase tracking-widest text-xs transition-all">
