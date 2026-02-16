@@ -1,16 +1,17 @@
 import React, { useState, useEffect, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Wind, 
-  Box, 
-  ShieldCheck, 
-  ArrowRight, 
+import {
+  Wind,
+  Box,
+  ShieldCheck,
+  ArrowRight,
   Menu,
   X,
   Layers,
   Zap,
   RotateCcw
 } from 'lucide-react';
+import SEO from './components/SEO';
 
 /**
  * AEROADIX - Single Page Application
@@ -379,8 +380,9 @@ const App = () => {
 
   return (
     <div className="bg-black text-white min-h-screen font-sans selection:bg-blue-600/30 scroll-smooth antialiased">
+      <SEO />
       <Navbar scrolled={scrolled} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-      
+
       <main>
         <Hero />
 
