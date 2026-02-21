@@ -9,7 +9,7 @@ import {
   X,
   Layers,
   Zap,
-  RotateCcw
+
 } from 'lucide-react';
 import SEO from './components/SEO';
 
@@ -99,83 +99,39 @@ const BrandMark = ({ size = 32, className = "" }) => (
   </div>
 );
 
-// --- Flip Card ---
+// --- Static Card ---
 const FlipCard = ({ frontImage, frontLabel, frontTitle, backText, backStats }) => {
-  const [isFlipped, setIsFlipped] = useState(false);
-  
   return (
-    <motion.div 
-      variants={fadeInUp}
-      className="cursor-pointer"
-      style={{ perspective: '1200px' }}
-      onClick={() => setIsFlipped(!isFlipped)}
-    >
-      <div 
-        className="relative w-full aspect-[4/5] transition-transform duration-700 ease-in-out"
-        style={{ 
-          transformStyle: 'preserve-3d',
-          transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'
-        }}
-      >
-        {/* Front */}
-        <div 
-          className="absolute inset-0 overflow-hidden rounded-sm group"
-          style={{ backfaceVisibility: 'hidden' }}
-        >
-          <ChromeCard className="h-full">
-            <div className="relative h-full flex flex-col overflow-hidden">
-              {/* Image — top half, unobstructed */}
-              <div className="relative w-full h-[55%] overflow-hidden flex-shrink-0">
-                <img 
-                  src={frontImage} 
-                  alt={frontTitle}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
-                />
-                <div className="absolute top-4 right-4 flex items-center gap-2 opacity-0 group-hover:opacity-60 transition-opacity duration-300">
-                  <span className="text-[8px] text-white uppercase tracking-widest font-bold drop-shadow-lg">Tap to learn</span>
-                  <RotateCcw size={12} className="text-white drop-shadow-lg" />
-                </div>
+    <motion.div variants={fadeInUp}>
+      <ChromeCard className="h-full">
+        <div className="flex flex-col overflow-hidden rounded-sm">
+          {/* Image */}
+          <div className="relative w-full aspect-[4/3] overflow-hidden flex-shrink-0">
+            <img
+              src={frontImage}
+              alt={frontTitle}
+              className="w-full h-full object-cover"
+            />
+          </div>
+          {/* Text */}
+          <div className="p-5 md:p-6 flex flex-col gap-3">
+            <span className="text-blue-500 text-[9px] tracking-[0.5em] uppercase font-bold">{frontLabel}</span>
+            <h4 className="text-lg md:text-xl font-black uppercase tracking-tighter italic text-white leading-tight">{frontTitle}</h4>
+            <div className="w-8 h-[1px] bg-gradient-to-r from-zinc-500 to-transparent" />
+            <p className="text-zinc-400 text-sm leading-relaxed">{backText}</p>
+            {backStats && (
+              <div className="mt-2 pt-4 border-t border-zinc-800/60 grid grid-cols-2 gap-4">
+                {backStats.map((stat, i) => (
+                  <div key={i}>
+                    <span className="text-blue-500 text-lg font-black">{stat.value}</span>
+                    <span className="block text-zinc-600 text-[8px] tracking-[0.3em] uppercase font-bold mt-1">{stat.label}</span>
+                  </div>
+                ))}
               </div>
-              {/* Text — bottom portion */}
-              <div className="flex-1 p-5 md:p-6 flex flex-col justify-center">
-                <span className="text-blue-500 text-[9px] tracking-[0.5em] uppercase font-bold block mb-2">{frontLabel}</span>
-                <h4 className="text-lg md:text-xl font-black uppercase tracking-tighter italic text-white leading-tight">{frontTitle}</h4>
-              </div>
-            </div>
-          </ChromeCard>
+            )}
+          </div>
         </div>
-        
-        {/* Back */}
-        <div 
-          className="absolute inset-0 rounded-sm"
-          style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
-        >
-          <ChromeCard className="h-full">
-            <div className="p-6 md:p-8 flex flex-col justify-between h-full relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-40 h-40 bg-blue-600/5 blur-[60px] rounded-full" />
-              <div className="relative z-10">
-                <span className="text-blue-500 text-[9px] tracking-[0.5em] uppercase font-bold block mb-3">{frontLabel}</span>
-                <h4 className="text-lg font-black uppercase tracking-tighter italic text-white mb-5">{frontTitle}</h4>
-                <div className="w-8 h-[1px] bg-gradient-to-r from-zinc-500 to-transparent mb-5" />
-                <p className="text-zinc-400 text-sm leading-relaxed">{backText}</p>
-              </div>
-              {backStats && (
-                <div className="relative z-10 mt-6 pt-5 border-t border-zinc-800/60 grid grid-cols-2 gap-4">
-                  {backStats.map((stat, i) => (
-                    <div key={i}>
-                      <span className="text-blue-500 text-lg font-black">{stat.value}</span>
-                      <span className="block text-zinc-600 text-[8px] tracking-[0.3em] uppercase font-bold mt-1">{stat.label}</span>
-                    </div>
-                  ))}
-                </div>
-              )}
-              <div className="absolute bottom-4 right-4 opacity-40">
-                <RotateCcw size={12} className="text-blue-500" />
-              </div>
-            </div>
-          </ChromeCard>
-        </div>
-      </div>
+      </ChromeCard>
     </motion.div>
   );
 };
@@ -186,7 +142,7 @@ const processCards = [
     frontImage: "/assets/cfd-streamlines.jpg",
     frontLabel: "Step 01 — Analyze",
     frontTitle: "Streamline Analysis",
-    backText: "Colored streamlines trace the path air takes as it flows over a component. Each color represents velocity — cool blues indicate slower air, hot reds show acceleration. This tells us exactly how a shape redirects airflow and where turbulence begins.",
+    backText: "Cool blues indicate slower air, hot reds show acceleration — revealing exactly how a shape redirects airflow and where turbulence begins.",
     backStats: [
       { value: "3,740", label: "cm/s Peak Velocity" },
       { value: "2D + 3D", label: "Multi-Axis Views" }
@@ -196,7 +152,7 @@ const processCards = [
     frontImage: "/assets/cfd-heatmap.jpg",
     frontLabel: "Step 02 — Map",
     frontTitle: "Velocity Field Mapping",
-    backText: "The velocity magnitude field reveals the full aerodynamic picture. High-speed zones (red) indicate where air accelerates around the canard profile, generating low pressure — the force that creates downforce. Blue zones downstream show the controlled wake.",
+    backText: "High-speed zones show where air accelerates around the canard profile, generating the low pressure that creates downforce. Blue zones reveal the controlled wake downstream.",
     backStats: [
       { value: "CFD", label: "Computational Fluid Dynamics" },
       { value: "Real-Time", label: "Iterative Refinement" }
@@ -206,7 +162,7 @@ const processCards = [
     frontImage: "/assets/cfd-wind-tunnel.jpg",
     frontLabel: "Step 03 — Test",
     frontTitle: "Virtual Wind Tunnel",
-    backText: "Before material is ever printed, each design runs through a full virtual wind tunnel. The simulation domain replicates real-world conditions — inlet velocity, boundary layers, ground effect — so we can validate performance digitally before committing to production.",
+    backText: "Each design runs through a full virtual wind tunnel — replicating inlet velocity, boundary layers, and ground effect — validating performance digitally before a single part is printed.",
     backStats: [
       { value: "Zero", label: "Physical Prototypes Wasted" },
       { value: "∞", label: "Design Iterations" }
@@ -216,7 +172,7 @@ const processCards = [
     frontImage: "/assets/gtr-canards-installed.jpg",
     frontLabel: "Step 04 — Validate",
     frontTitle: "Real-World Fitment",
-    backText: "The final proof is on the car. Every canard is chassis-scanned and CFD-validated before it's printed, so the transition from simulation to street is seamless. Flow visualization overlays confirm the aerodynamic behavior matches our digital predictions.",
+    backText: "Every canard is chassis-scanned and CFD-validated before printing. Flow visualization overlays confirm real-world aerodynamic behavior matches our digital predictions.",
     backStats: [
       { value: "OEM+", label: "Fitment Standard" },
       { value: "UV/Heat", label: "Stable Resin" }
