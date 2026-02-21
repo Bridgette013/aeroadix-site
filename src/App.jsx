@@ -306,8 +306,21 @@ const Hero = () => (
         transition={{ delay: 0.2 }}
         className="inline-block px-4 py-1 border border-blue-600/30 bg-blue-600/5 text-blue-500 text-[10px] tracking-[0.5em] uppercase mb-12 animate-pulse"
       >
-        Motorsport Aerodynamics Surface Technology
+        Motorsports Aerodynamics Surface Technologies
       </motion.div>
+       <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="relative z-10 text-center px-6 w-full max-w-5xl flex flex-col items-center"
+    >
+      <motion.div 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        className="inline-block px-4 py-1 border border-blue-600/30 bg-blue-600/5 text-blue-500 text-[10px] tracking-[0.5em] uppercase mb-12 animate-pulse"
+      >
+        Motorsports Aerodynamics Surface Technologies
+      </motion.div
       
       <motion.div 
         initial={{ scale: 0.9, opacity: 0 }}
