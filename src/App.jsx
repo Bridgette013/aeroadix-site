@@ -301,13 +301,29 @@ const Hero = () => (
       animate={{ opacity: 1 }}
       className="relative z-10 text-center px-6 w-full max-w-5xl flex flex-col items-center"
     >
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="inline-block px-4 py-1 border border-blue-600/30 bg-blue-600/5 text-blue-500 text-[10px] tracking-[0.5em] uppercase mb-12 animate-pulse"
+        className="inline-block px-8 py-4 mt-24 text-[16px] tracking-[0.5em] uppercase mb-12 animate-pulse text-center"
+        style={{
+          border: 'none',
+          background: 'transparent',
+        }}
       >
-        Motorsport Aerodynamics Surface Technology
+        <span className="font-bold" style={{
+          backgroundImage: 'linear-gradient(135deg, #a8a8a8 0%, #e8e8e8 25%, #ffffff 50%, #e8e8e8 75%, #a8a8a8 100%)',
+          backgroundClip: 'text',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+        }}>AeroAdix M.A.S.T. Concept:</span>
+        <br />
+        <span style={{
+          backgroundImage: 'linear-gradient(135deg, #b0b0b0 0%, #e0e0e0 25%, #ffffff 50%, #e0e0e0 75%, #b0b0b0 100%)',
+          backgroundClip: 'text',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+        }}>Motorsports Aerodynamics Surface Technologies</span>
       </motion.div>
       
       <motion.div 
