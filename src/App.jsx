@@ -18,7 +18,7 @@ import SEO from './components/SEO';
  * An Automotive Aero Optimization Company — A Division of 3DBoomPrint
  * 
  * IMAGE ASSETS — place all in /public/assets/:
- *   aeroadix-logo.png          → Hero logo
+ *   aeroadix-logo.svg          → Hero logo (vector)
  *   gtr-canards-installed.jpg  → Flip card
  *   cfd-streamlines.jpg        → Flip card
  *   cfd-heatmap.jpg            → Flip card
@@ -327,7 +327,7 @@ const FeaturedProductsCarousel = () => {
 
 // --- Hero ---
 const Hero = () => (
-  <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
+  <section className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden pt-28 pb-16">
     <div className="absolute inset-0 z-0 opacity-20">
       <div className="absolute inset-0 bg-gradient-to-b from-blue-900/10 via-transparent to-transparent" />
       <svg viewBox="0 0 800 300" className="w-full h-full object-cover fill-none stroke-zinc-800 stroke-[0.3]">
@@ -337,16 +337,17 @@ const Hero = () => (
       </svg>
     </div>
 
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="relative z-10 text-center px-6 w-full max-w-5xl flex flex-col items-center"
+      className="relative z-10 text-center px-6 w-full flex flex-col items-center"
     >
+      {/* M.A.S.T. Concept Banner */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="inline-block px-8 py-4 mt-24 text-[16px] tracking-[0.5em] uppercase mb-12 animate-pulse text-center"
+        className="inline-block px-8 py-4 text-[16px] tracking-[0.5em] uppercase mb-6 animate-pulse text-center"
         style={{
           border: 'none',
           background: 'transparent',
@@ -372,24 +373,24 @@ const Hero = () => (
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
-        className="w-full max-w-3xl mb-8 relative group"
+        transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
+        className="w-full max-w-2xl mt-8 mb-6 relative group"
       >
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
           <div className="w-3/4 h-3/4 bg-blue-600/8 blur-[80px] rounded-full group-hover:bg-blue-600/14 transition-all duration-700" />
         </div>
-        <img 
-          src="/assets/aeroadix-logo.png"
+        <img
+          src="/assets/aeroadix-logo.svg"
           alt="AeroAdix — An Automotive Aero Optimization Company"
-          className="w-full h-auto max-h-64 object-contain relative z-10 drop-shadow-[0_0_40px_rgba(37,99,235,0.15)] group-hover:drop-shadow-[0_0_60px_rgba(37,99,235,0.25)] transition-all duration-700"
+          className="w-full h-auto max-h-48 object-contain relative z-10 drop-shadow-[0_0_40px_rgba(37,99,235,0.15)] group-hover:drop-shadow-[0_0_60px_rgba(37,99,235,0.25)] transition-all duration-700"
           draggable="false"
         />
       </motion.div>
-      
-      <motion.p 
+
+      <motion.p
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6 }}
+        transition={{ delay: 0.7 }}
         className="text-gray-400 text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed tracking-wide"
       >
         An Automotive Aero Optimization Company. Design, engineering, and development of functional aerodynamic components for elite performance vehicles.
@@ -398,17 +399,17 @@ const Hero = () => (
       <motion.span
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.7 }}
+        transition={{ delay: 0.8 }}
         className="text-zinc-700 text-[9px] tracking-[0.4em] uppercase font-bold mt-4"
       >
         A Division of 3DBoomPrint
       </motion.span>
 
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8 }}
-        className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6"
+        transition={{ delay: 0.9 }}
+        className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-6"
       >
         <button className="group relative px-10 py-4 bg-blue-700 hover:bg-blue-600 text-white font-bold uppercase tracking-widest text-xs transition-all overflow-hidden">
           <span className="relative z-10">Explore the Platform</span>
@@ -419,7 +420,7 @@ const Hero = () => (
         </button>
       </motion.div>
     </motion.div>
-    
+
     <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-20">
       <div className="w-[1px] h-16 bg-gradient-to-b from-white to-transparent" />
     </div>
