@@ -113,8 +113,7 @@ const FlipCard = ({ frontImage, frontLabel, frontTitle, backText, backStats }) =
               className="w-full h-full object-cover"
             />
           </div>
-          {/* Text */}
-          <div className="p-5 md:p-6 flex flex-col gap-3">
+           <div className="p-5 md:p-6 flex flex-col gap-3">
             <span className="text-blue-500 text-[9px] tracking-[0.5em] uppercase font-bold">{frontLabel}</span>
             <h4 className="text-lg md:text-xl font-black uppercase tracking-tighter italic text-white leading-tight">{frontTitle}</h4>
             <div className="w-8 h-[1px] bg-gradient-to-r from-zinc-500 to-transparent" />
@@ -240,6 +239,92 @@ const Navbar = memo(({ scrolled, isMenuOpen, setIsMenuOpen }) => (
   </nav>
 ));
 
+// --- Featured Products Carousel ---
+const featuredProducts = [
+  { id: 1, label: "Featured 01", subtitle: "Product Photo" },
+  { id: 2, label: "Featured 02", subtitle: "Product Photo" },
+  { id: 3, label: "Featured 03", subtitle: "Product Photo" },
+  { id: 4, label: "Featured 04", subtitle: "Product Photo" },
+  { id: 5, label: "Featured 05", subtitle: "Product Photo" },
+  { id: 6, label: "Featured 06", subtitle: "Product Photo" },
+  { id: 7, label: "Featured 07", subtitle: "Product Photo" },
+  { id: 8, label: "Featured 08", subtitle: "Product Photo" },
+];
+
+const FeaturedProductsCarousel = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const totalItems = featuredProducts.length;
+  const visibleCount = 4;
+  const maxIndex = totalItems - visibleCount;
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const shiftPercent = -activeIndex * (100 / totalItems);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.3 }}
+      className="w-full max-w-4xl mb-10"
+    >
+      <div className="overflow-hidden">
+        <motion.div
+          animate={{ x: `${shiftPercent}%` }}
+          transition={{ duration: 0.7, ease: "easeInOut" }}
+          className="flex"
+          style={{ width: `${(totalItems / visibleCount) * 100}%` }}
+        >
+          {featuredProducts.map((product) => (
+            <div
+              key={product.id}
+              className="px-1.5"
+              style={{ width: `${100 / totalItems}%` }}
+            >
+              <div className="relative" style={{ padding: '1px' }}>
+                {/* Chrome border */}
+                <div
+                  className="absolute inset-0 rounded-sm"
+                  style={{
+                    background: 'linear-gradient(160deg, rgba(200,200,210,0.2) 0%, rgba(80,80,90,0.08) 50%, rgba(140,140,150,0.15) 100%)'
+                  }}
+                />
+                {/* Card interior */}
+                <div className="relative bg-[#0a0a0a] rounded-sm aspect-[4/3] flex flex-col items-center justify-center group hover:bg-[#0f0f0f] transition-colors duration-300 cursor-pointer">
+                  {/* Placeholder icon */}
+                  <div className="w-12 h-12 border border-zinc-800 group-hover:border-zinc-700 rounded-sm flex items-center justify-center mb-3 transition-colors duration-300">
+                    <Box size={18} className="text-zinc-700 group-hover:text-blue-600/50 transition-colors duration-300" />
+                  </div>
+                  <span className="text-zinc-500 text-[8px] tracking-[0.4em] uppercase font-bold">{product.label}</span>
+                  <span className="text-zinc-700 text-[7px] tracking-[0.3em] uppercase mt-1">{product.subtitle}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Dot indicators */}
+      <div className="flex justify-center gap-1.5 mt-4">
+        {Array.from({ length: maxIndex + 1 }, (_, i) => (
+          <button
+            key={i}
+            onClick={() => setActiveIndex(i)}
+            className={`h-1 rounded-full transition-all duration-300 ${
+              i === activeIndex ? 'bg-blue-600 w-4' : 'bg-zinc-800 w-1.5 hover:bg-zinc-700'
+            }`}
+          />
+        ))}
+      </div>
+    </motion.div>
+  );
+};
+
 // --- Hero ---
 const Hero = () => (
   <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
@@ -281,6 +366,8 @@ const Hero = () => (
           WebkitTextFillColor: 'transparent',
         }}>Motorsports Aerodynamics Surface Technologies</span>
       </motion.div>
+
+      <FeaturedProductsCarousel />
 
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
