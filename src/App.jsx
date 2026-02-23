@@ -339,23 +339,41 @@ const Hero = () => (
           draggable="false"
         />
       </motion.div>
-
+      
       <motion.p
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.7 }}
         className="text-gray-400 text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed tracking-wide"
       >
-        An Automotive Aero Optimization Company. Design, engineering, and development of functional aerodynamic components for elite performance vehicles.
+        An Automotive O.E. Aero Optimization Company: 3D-Scanned | CFD-Engineered | 3D-Designed | 3D-Printed | Performance Aero Components.
+      </motion.p>
+
+      <motion.p
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.65 }}
+        className="text-zinc-400 text-sm md:text-base max-w-2xl mx-auto leading-relaxed tracking-wide mt-4"
+      >
+        Functional Additive Aero, direct fit bolt-on. Accent trim.
       </motion.p>
 
       <motion.span
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.8 }}
-        className="text-zinc-700 text-[9px] tracking-[0.4em] uppercase font-bold mt-4"
+        transition={{ delay: 0.7 }}
+        className="text-zinc-500 text-[10px] tracking-[0.3em] uppercase font-bold mt-4"
       >
-        A Division of 3DBoomPrint
+        (OE-Plus) Additive Aerodynamics Performance Components
+      </motion.span>
+
+      <motion.span
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.75 }}
+        className="text-zinc-700 text-[9px] tracking-[0.4em] uppercase font-bold mt-3"
+      >
+        AeroAdix — A Division of 3DBoomPrint
       </motion.span>
 
       <motion.div
@@ -410,20 +428,20 @@ const App = () => {
               className="grid md:grid-cols-3 gap-8"
             >
               {[
-                { 
-                  icon: Layers, 
-                  title: "3D Laser Scanning", 
-                  desc: "Every build starts with a sub-millimeter scan of the factory chassis. No assumptions — just data. The result is aero that fits like it came from the OEM." 
+                {
+                  icon: Layers,
+                  title: "3D Laser Scanning",
+                  desc: "Every build starts with a sub-millimeter 3D scan of the factory chassis. No assumptions — just data. The result is OE-Plus aero that fits like it came from the factory."
                 },
-                { 
-                  icon: Zap, 
-                  title: "CFD Simulation", 
-                  desc: "Each profile is tested in full CFD simulation before it ever touches material. Downforce targets, drag coefficients, pressure mapping — validated digitally, verified physically." 
+                {
+                  icon: Zap,
+                  title: "CFD-Engineered Simulation",
+                  desc: "Each profile is tested in full Computational Fluid Dynamics simulation. Downforce targets, drag coefficients, pressure mapping — solving Navier-Stokes equations to visualize pressure, velocity, and temperature."
                 },
-                { 
-                  icon: Box, 
-                  title: "Additive 3D Printed Fabrication", 
-                  desc: "Production-grade additive manufacturing unlocks geometries that injection molding and hand layup can't touch. Complex internal structures, optimized wall thicknesses — printed with purpose." 
+                {
+                  icon: Box,
+                  title: "3D-Printed Additive Fabrication",
+                  desc: "Production-grade additive manufacturing unlocks geometries that injection molding and hand layup can't touch. Functional additive aero, direct fit bolt-on — printed with purpose."
                 }
               ].map((feature, i) => (
                 <motion.div key={i} variants={fadeInUp}>
@@ -507,7 +525,7 @@ const App = () => {
                 The <span className="text-blue-600">CFD</span> Process
               </h2>
               <p className="text-zinc-500 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
-                Computational Fluid Dynamics is the backbone of everything we build. Every component is digitally simulated, pressure-mapped, and validated before it ever leaves the printer. Tap any card to learn what you're looking at.
+                Computational Fluid Dynamics (CFD) is a branch of fluid mechanics that uses numerical analysis, data structures, and computer simulation to analyze and solve problems involving fluid flows, heat transfer, and related physics. It models gas/liquid behavior by solving governing equations (Navier-Stokes) to visualize pressure, velocity, and temperature.
               </p>
             </motion.div>
 
@@ -540,13 +558,18 @@ const App = () => {
               className="flex flex-col items-center text-center"
             >
               <div className="text-lg md:text-2xl font-light tracking-[0.2em] text-blue-600/80 mb-6 flex flex-wrap justify-center gap-4 items-center uppercase">
-                <span>Precision</span>
+                <span>3D-Scanned</span>
                 <span className="text-zinc-800 font-thin">|</span>
-                <span>Engineered</span>
+                <span>CFD-Engineered</span>
                 <span className="text-zinc-800 font-thin">|</span>
-                <span>3D Printed</span>
+                <span>3D-Designed</span>
+                <span className="text-zinc-800 font-thin">|</span>
+                <span>3D-Printed</span>
               </div>
-              <h3 className="font-bold text-white tracking-[0.4em] uppercase text-lg md:text-2xl mb-16">Aero Components</h3>
+              <h3 className="font-bold text-white tracking-[0.4em] uppercase text-lg md:text-2xl mb-4">Performance Aero Components</h3>
+              <p className="text-zinc-500 text-sm max-w-xl mx-auto leading-relaxed mb-16">
+                (OE-Plus) Additive Aerodynamics Performance Components — functional additive aero, direct fit bolt-on enhancements.
+              </p>
               
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full">
                 {['Splitters', 'Diffusers', 'Canards', 'Vortex Generators'].map((comp, idx) => (
@@ -578,8 +601,8 @@ const App = () => {
             </motion.div>
             <div className="grid md:grid-cols-2 gap-10 text-left">
               {[
-                { title: "Mission Statement", icon: ShieldCheck, content: "3DBoomPrint exists to bridge the gap between imagination and fabrication through cutting-edge CAD and precision manufacturing." },
-                { title: "AeroAdix Focus", icon: Wind, content: "We redefine customization by making high-quality, low-volume production accessible to the performance world." }
+                { title: "Mission Statement", icon: ShieldCheck, content: "AeroAdix is an Automotive Aero OE-Plus Optimization Company. A Division of 3DBoomPrint — bridging the gap between imagination and fabrication through cutting-edge CAD and precision additive manufacturing." },
+                { title: "AeroAdix Focus", icon: Wind, content: "3D-Scanned, CFD-Engineered, 3D-Designed, 3D-Printed functional additive aero. Direct fit bolt-on performance aero components and accent trim, engineered for elite performance vehicles." }
               ].map((card, i) => (
                 <motion.div 
                   key={i}
@@ -613,7 +636,7 @@ const App = () => {
                 AERO<span className="text-blue-600">ADIX</span>
               </span>
             </div>
-            <p className="text-zinc-600 text-[10px] tracking-[0.4em] uppercase font-bold">Automotive Aero Optimization</p>
+            <p className="text-zinc-600 text-[10px] tracking-[0.4em] uppercase font-bold">OE-Plus Automotive Aero Optimization</p>
             <p className="text-zinc-700 text-[9px] tracking-[0.3em] uppercase font-bold mt-2">A Division of 3DBoomPrint</p>
           </div>
           

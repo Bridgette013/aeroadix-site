@@ -2,9 +2,9 @@ import { Helmet } from 'react-helmet-async';
 
 const SITE_NAME = 'AEROADIX';
 const SITE_URL = 'https://aeroadix.com';
-const DEFAULT_TITLE = 'AEROADIX | 3D Printed Automotive Aerodynamics';
+const DEFAULT_TITLE = 'AEROADIX | OE-Plus Automotive Aero Optimization';
 const DEFAULT_DESCRIPTION =
-  'AeroAdix specializes in 3D printed automotive aerodynamics — CFD-validated splitters, diffusers, canards, and vortex generators engineered for elite performance vehicles.';
+  'AeroAdix is an Automotive Aero OE-Plus Optimization Company. 3D-Scanned, CFD-Engineered, 3D-Designed, 3D-Printed functional additive aero performance components. A Division of 3DBoomPrint.';
 const DEFAULT_IMAGE = `${SITE_URL}/assets/aeroadix-og.jpg`;
 
 const localBusinessSchema = {
