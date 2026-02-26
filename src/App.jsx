@@ -4,7 +4,6 @@ import {
   Wind,
   Box,
   ShieldCheck,
-  ArrowRight,
   Menu,
   X,
   Layers,
@@ -480,55 +479,41 @@ const App = () => {
 
         {/* ── Flagship R35 GTR ── */}
         <section id="flagship" className="py-32 relative overflow-hidden bg-black">
-          <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-24 items-center">
-            <motion.div 
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+          <div className="max-w-7xl mx-auto px-6 flex flex-col items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
+              className="text-center mb-16"
             >
-              <span className="text-blue-600 text-[10px] font-black uppercase tracking-[0.5em]">First Platform Release</span>
-              <h2 className="text-6xl md:text-8xl font-black italic tracking-tighter mt-4 mb-8">
-                R35 GTR <br />
-                <span className="bg-gradient-to-r from-zinc-500 via-zinc-200 to-zinc-500 bg-clip-text text-transparent italic">STAGE 1 AERO KIT</span>
+              <span className="text-blue-600 text-[10px] font-black uppercase tracking-[0.5em] block mb-4">Precision Engineering</span>
+              <h2 className="text-5xl md:text-7xl font-black italic tracking-tighter">
+                OEM-LEVEL FITMENT,{' '}
+                <span className="bg-gradient-to-r from-zinc-500 via-zinc-200 to-zinc-500 bg-clip-text text-transparent">TRACK-READY PERFORMANCE</span>
               </h2>
-              <p className="text-zinc-400 text-lg mb-12 leading-relaxed font-light">
-                Front-end aero designed around the R35's factory body lines. Canards engineered to generate real front-axle load without cutting into the bumper or fighting the car's proportions.
-              </p>
-              <ul className="space-y-6 mb-12">
-                {['Chassis-Matched Fitment', 'UV-Stable / High-Temp Resin', 'CFD-Validated Downforce Profile'].map((item, idx) => (
-                  <li key={idx} className="flex items-center gap-4 text-xs text-zinc-300 font-bold tracking-widest uppercase">
-                    <div className="h-2 w-2 bg-blue-600 rotate-45" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <button className="flex items-center gap-6 py-5 px-10 bg-white text-black font-black uppercase text-[10px] tracking-[0.3em] hover:bg-blue-600 hover:text-white transition-all">
-                View Build Details <ArrowRight size={16} />
-              </button>
             </motion.div>
-            
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="relative"
+              transition={{ duration: 0.8 }}
+              className="relative w-full max-w-5xl"
             >
-              {/* Chrome-bordered product showcase */}
               <div className="relative" style={{ padding: '1px' }}>
-                <div 
+                <div
                   className="absolute inset-0 rounded-lg"
                   style={{
                     background: 'linear-gradient(160deg, rgba(200,200,210,0.35) 0%, rgba(100,100,110,0.1) 40%, rgba(80,80,90,0.08) 60%, rgba(180,180,190,0.3) 100%)'
                   }}
                 />
                 <div className="absolute top-0 left-[15%] right-[15%] h-[1px] opacity-30" style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent)' }} />
-                <div className="relative bg-black rounded-lg p-12 aspect-square flex flex-col items-center justify-center overflow-hidden group">
-                  <div className="w-56 h-14 bg-gradient-to-r from-zinc-800 to-blue-900/50 skew-x-[30deg] border-r-4 border-blue-600 shadow-2xl transition-transform duration-700 group-hover:scale-110" />
-                  <div className="mt-16 text-center">
-                    <span className="text-zinc-600 text-[9px] tracking-widest uppercase">Variant: Gunmetal Chrome</span>
-                    <h4 className="text-2xl font-black text-white uppercase italic mt-2">Nismo-Spec Canard</h4>
-                  </div>
+                <div className="relative bg-black rounded-lg overflow-hidden">
+                  <img
+                    src="/assets/3d-scan-porsche.jpg"
+                    alt="3D scanning a Porsche GT3 for precision aero fitment"
+                    className="w-full h-auto object-cover"
+                  />
                 </div>
               </div>
               <div className="absolute -top-10 -right-10 w-80 h-80 bg-blue-600/10 blur-[150px] rounded-full -z-10" />
