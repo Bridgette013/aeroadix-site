@@ -415,68 +415,6 @@ const App = () => {
           </div>
         </section>
 
-        {/* ── Precision Engineering | OEM Level Fitment ── */}
-        <section className="relative overflow-hidden bg-black border-t border-zinc-900">
-          <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-0 items-stretch">
-            {/* Image Side */}
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="relative w-full aspect-[4/3] md:aspect-auto overflow-hidden"
-            >
-              <img
-                src="/assets/precision-engineering-scan.png"
-                alt="AeroAdix 3D Laser Scanning — Precision Engineering OEM Level Fitment"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-black/80 hidden md:block" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent md:hidden" />
-            </motion.div>
-
-            {/* Copy Side */}
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex flex-col justify-center px-8 py-16 md:px-16 md:py-24"
-            >
-              <span className="text-blue-600 text-[10px] font-black uppercase tracking-[0.5em] mb-6">Our Standard</span>
-
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter italic leading-[0.95] mb-4">
-                Precision{' '}
-                <span className="bg-gradient-to-r from-zinc-400 via-zinc-200 to-zinc-400 bg-clip-text text-transparent">Engineering</span>
-              </h2>
-
-              <div className="flex items-center gap-4 mb-4">
-                <div className="h-[2px] w-12 bg-gradient-to-r from-blue-600 to-transparent" />
-                <span className="text-zinc-600 text-lg font-light italic tracking-wide">|</span>
-                <div className="h-[2px] w-12 bg-gradient-to-l from-blue-600 to-transparent" />
-              </div>
-
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter italic leading-[0.95] mb-8">
-                OEM Level{' '}
-                <span className="text-blue-600">Fitment</span>
-              </h2>
-
-              <p className="text-zinc-400 text-sm md:text-base leading-relaxed font-light max-w-md mb-8">
-                Every component begins with a sub-millimeter 3D laser scan of the factory body. No guesswork, no generic templates — geometry captured directly from the vehicle ensures each part integrates with OEM-level precision.
-              </p>
-
-              <div className="flex flex-wrap gap-x-8 gap-y-4">
-                {['Sub-mm Accuracy', '3D Laser Scanned', 'OEM+ Fitment'].map((tag, idx) => (
-                  <span key={idx} className="flex items-center gap-3 text-[10px] text-zinc-300 font-bold tracking-[0.3em] uppercase">
-                    <div className="h-1.5 w-1.5 bg-blue-600 rotate-45" />
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
         {/* ── Flagship R35 GTR ── */}
         <section id="flagship" className="py-32 relative overflow-hidden bg-black">
           <div className="max-w-7xl mx-auto px-6 flex flex-col items-center">
@@ -488,7 +426,7 @@ const App = () => {
               className="text-center mb-16"
             >
               <span className="text-blue-600 text-[10px] font-black uppercase tracking-[0.5em] block mb-4">Precision Engineering</span>
-              <h2 className="text-5xl md:text-7xl font-black italic tracking-tighter">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black italic tracking-tighter px-1">
                 OEM-LEVEL FITMENT,{' '}
                 <span className="bg-gradient-to-r from-zinc-500 via-zinc-200 to-zinc-500 bg-clip-text text-transparent">TRACK-READY PERFORMANCE</span>
               </h2>
