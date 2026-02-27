@@ -8,6 +8,7 @@ import {
   X,
   Layers,
   Zap,
+  ImageIcon,
 } from 'lucide-react';
 import SEO from './components/SEO';
 
@@ -237,6 +238,45 @@ const Navbar = memo(({ scrolled, isMenuOpen, setIsMenuOpen }) => (
   </nav>
 ));
 
+// --- Featured Services Carousel ---
+const carouselServices = [
+  { id: 1, label: "Production 3D Print" },
+  { id: 2, label: "CFD Streamline Analysis" },
+  { id: 3, label: "3D Laser Scanning" },
+  { id: 4, label: "Canard Prototyping" },
+  { id: 5, label: "Wind Tunnel Simulation" },
+  { id: 6, label: "Real-World Fitment" },
+];
+
+const FeaturedProductsCarousel = () => (
+  <motion.div
+    initial={{ opacity: 0, y: 10 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ delay: 0.3 }}
+    className="w-full max-w-6xl mb-10"
+  >
+    <div className="carousel-wrapper">
+      <div className="carousel-track">
+        {[...carouselServices, ...carouselServices].map((service, i) => (
+          <div key={`${service.id}-${i}`} className="flex-shrink-0 w-60 px-2">
+            <div
+              className="rounded-md aspect-[4/3] flex flex-col items-center justify-center cursor-pointer group transition-all duration-300 hover:brightness-110"
+              style={{
+                background: 'linear-gradient(135deg, #0c1a3a 0%, #132b5e 30%, #1a3a6e 50%, #1b4a6a 70%, #1a5a6a 100%)',
+              }}
+            >
+              <div className="w-12 h-12 border border-white/10 rounded-md flex items-center justify-center mb-4 group-hover:border-white/20 transition-colors duration-300">
+                <ImageIcon size={20} className="text-white/30 group-hover:text-white/50 transition-colors duration-300" />
+              </div>
+              <span className="text-white/70 text-[10px] tracking-[0.3em] uppercase font-semibold text-center px-2">{service.label}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </motion.div>
+);
+
 // --- Hero ---
 const Hero = () => (
   <section className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden pt-28 pb-16">
@@ -279,6 +319,8 @@ const Hero = () => (
           WebkitTextFillColor: 'transparent',
         }}>Motorsports Aerodynamics Surface Technologies</span>
       </motion.div>
+
+      <FeaturedProductsCarousel />
 
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
