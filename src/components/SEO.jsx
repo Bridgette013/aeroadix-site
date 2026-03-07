@@ -2,9 +2,9 @@ import { Helmet } from 'react-helmet-async';
 
 const SITE_NAME = 'AEROADIX';
 const SITE_URL = 'https://aeroadix.com';
-const DEFAULT_TITLE = 'AEROADIX | OE-Plus Automotive Aero Optimization';
+const DEFAULT_TITLE = 'AEROADIX | 3D Scanned • 3D Engineered • 3D Printed';
 const DEFAULT_DESCRIPTION =
-  'AeroAdix is an Automotive Aero OE-Plus Optimization Company. 3D-Scanned, CFD-Engineered, 3D-Designed, 3D-Printed functional additive aero performance components. A Division of 3DBoomPrint.';
+  '3D Scanned • 3D Engineered • 3D Printed — AeroAdix delivers OE-Plus automotive aerodynamics. CFD-engineered, additive-manufactured performance aero components. A Division of 3DBoomPrint.';
 const DEFAULT_IMAGE = `${SITE_URL}/assets/aeroadix-og.jpg`;
 
 const localBusinessSchema = {
