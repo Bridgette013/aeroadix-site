@@ -11,11 +11,6 @@ import Checkout from './pages/Checkout';
 import OrderConfirmation from './pages/OrderConfirmation';
 import CartIcon from './components/CartIcon';
 
-// ── All your existing code below is UNCHANGED ──
-// Only 3 things added:
-//   1. Router + CartProvider wrapping at the bottom
-//   2. CartIcon added to Navbar (desktop + mobile)
-//   3. "Shop Aero Components" hero button now links to /shop
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
