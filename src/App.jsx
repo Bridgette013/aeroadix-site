@@ -114,7 +114,7 @@ const Navbar = memo(({ scrolled, isMenuOpen, setIsMenuOpen }) => (
         <NavLink href="#process">The Process</NavLink>
         <NavLink href="#aerocomponents">Aero Components</NavLink>
         <NavLink href="#subsidiary">3DBoomPrint</NavLink>
-        <a href="/shop" className="px-5 py-2 bg-[#00BFFF] hover:bg-[#0099CC] text-black font-bold transition-all ml-2">Shop</a>
+        <a href="/shop" className="px-5 py-2 bg-blue-700 hover:bg-blue-600 text-white font-bold transition-all ml-2">Shop</a>
         <CartIcon className="ml-1" />
       </div>
       <button className="md:hidden text-gray-400" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -129,7 +129,7 @@ const Navbar = memo(({ scrolled, isMenuOpen, setIsMenuOpen }) => (
             <a key={item} href={`#${item.toLowerCase().replace(/\s+/g, '')}`} onClick={() => setIsMenuOpen(false)}
               className="text-xs font-black tracking-widest uppercase hover:text-blue-600">{item}</a>
           ))}
-          <a href="/shop" onClick={() => setIsMenuOpen(false)} className="text-xs font-black tracking-widest uppercase text-[#00BFFF]">Shop</a>
+          <a href="/shop" onClick={() => setIsMenuOpen(false)} className="text-xs font-black tracking-widest uppercase text-blue-600">Shop</a>
         </motion.div>
       )}
     </AnimatePresence>
@@ -199,7 +199,7 @@ const Hero = () => (
         AeroAdix — A Division of 3DBoomPrint
       </motion.span>
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9 }} className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-6">
-        <a href="/shop" className="group relative px-10 py-4 bg-[#00BFFF] hover:bg-[#0099CC] text-black font-bold uppercase tracking-widest text-xs transition-all overflow-hidden">
+        <a href="/shop" className="group relative px-10 py-4 bg-blue-700 hover:bg-blue-600 text-white font-bold uppercase tracking-widest text-xs transition-all overflow-hidden">
           <span className="relative z-10">Shop Aero Components</span>
           <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
         </a>

@@ -1,0 +1,105 @@
+export const products = [
+  {
+    id: 'r35-gtr-front-canards',
+    name: 'R35 GTR Front Canards',
+    vehicle: 'Nissan R35 GTR',
+    price: 289,
+    sku: 'ADX-R35-CND-001',
+    thumbnail: '/assets/gtr-canards-installed.jpg',
+    images: ['/assets/gtr-canards-installed.jpg'],
+    description: 'CFD-engineered front canards for the Nissan R35 GTR. 3D-scanned for OEM-plus fitment, optimized for real downforce at speed.',
+    features: [
+      'CFD-validated aerodynamic profile',
+      '3D-scanned OEM-plus fitment',
+      'UV-stable resin construction',
+      'Direct bolt-on installation',
+      'Pair (left + right) included',
+    ],
+    specifications: {
+      material: 'UV-Stable Resin',
+      finish: 'Satin Black',
+      weight: '0.4 kg per side',
+      installation: 'Bolt-on, no drilling required',
+    },
+    featured: true,
+    inStock: true,
+  },
+  {
+    id: 'r35-gtr-front-splitter',
+    name: 'R35 GTR Front Splitter',
+    vehicle: 'Nissan R35 GTR',
+    price: 449,
+    sku: 'ADX-R35-SPL-001',
+    thumbnail: '/assets/cfd-streamlines.jpg',
+    images: ['/assets/cfd-streamlines.jpg'],
+    description: 'Track-inspired front splitter for the R35 GTR. CFD-engineered to maximize front-end downforce with minimal drag penalty.',
+    features: [
+      'Full-width underbody splitter',
+      'CFD-optimized profile',
+      'Reinforced mounting points',
+      'Track-tested design',
+    ],
+    specifications: {
+      material: 'UV-Stable Resin',
+      finish: 'Satin Black',
+      weight: '1.8 kg',
+      installation: 'Bolt-on with included hardware',
+    },
+    featured: false,
+    inStock: true,
+  },
+  {
+    id: 'r35-gtr-rear-diffuser',
+    name: 'R35 GTR Rear Diffuser',
+    vehicle: 'Nissan R35 GTR',
+    price: 599,
+    sku: 'ADX-R35-DIF-001',
+    thumbnail: '/assets/cfd-heatmap.jpg',
+    images: ['/assets/cfd-heatmap.jpg'],
+    description: 'Rear diffuser engineered to accelerate underbody airflow and reduce rear lift on the R35 GTR platform.',
+    features: [
+      'Multi-fin diffuser design',
+      'CFD-validated flow channels',
+      'OEM mounting point compatible',
+      'Reduces rear lift at speed',
+    ],
+    specifications: {
+      material: 'UV-Stable Resin',
+      finish: 'Satin Black',
+      weight: '2.1 kg',
+      installation: 'Bolt-on replacement',
+    },
+    featured: false,
+    inStock: true,
+  },
+  {
+    id: 'r35-gtr-vortex-generators',
+    name: 'R35 GTR Vortex Generators',
+    vehicle: 'Nissan R35 GTR',
+    price: 179,
+    sku: 'ADX-R35-VTX-001',
+    thumbnail: '/assets/cfd-wind-tunnel.jpg',
+    images: ['/assets/cfd-wind-tunnel.jpg'],
+    description: 'Roof-mounted vortex generators for the R35 GTR. Energize boundary layer airflow to improve rear wing and spoiler effectiveness.',
+    features: [
+      'Set of 8 vortex generators',
+      'Optimized spacing and angle',
+      'Adhesive + mechanical mounting',
+      'Minimal drag addition',
+    ],
+    specifications: {
+      material: 'UV-Stable Resin',
+      finish: 'Satin Black',
+      weight: '0.15 kg total',
+      installation: '3M adhesive + optional screws',
+    },
+    featured: false,
+    inStock: true,
+  },
+];
+
+export const getProductById = (id) => products.find(p => p.id === id);
+
+export const getProductsByVehicle = (vehicle) => products.filter(p => p.vehicle === vehicle);
+
+export const getFeaturedProducts = () => products.filter(p => p.featured);

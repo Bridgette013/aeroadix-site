@@ -18,7 +18,7 @@ const ProductDetail = () => {
       <div className="min-h-screen bg-black text-white flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">Product Not Found</h1>
-          <Link to="/shop" className="text-[#00BFFF] hover:underline">← Back to Shop</Link>
+          <Link to="/shop" className="text-blue-600 hover:underline">← Back to Shop</Link>
         </div>
       </div>
     );
@@ -47,9 +47,9 @@ const ProductDetail = () => {
       <div className="bg-zinc-900 border-b border-zinc-800 py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="text-sm text-zinc-500 flex gap-2">
-            <Link to="/" className="hover:text-[#00BFFF]">Home</Link>
+            <Link to="/" className="hover:text-blue-600">Home</Link>
             <span>/</span>
-            <Link to="/shop" className="hover:text-[#00BFFF]">Shop</Link>
+            <Link to="/shop" className="hover:text-blue-600">Shop</Link>
             <span>/</span>
             <span className="text-zinc-300">{product.name}</span>
           </nav>
@@ -75,7 +75,7 @@ const ProductDetail = () => {
                     key={index}
                     onClick={() => setSelectedImage(index)}
                     className={`aspect-square bg-zinc-900 border overflow-hidden transition-colors ${
-                      selectedImage === index ? 'border-[#00BFFF]' : 'border-zinc-800 hover:border-zinc-600'
+                      selectedImage === index ? 'border-blue-600' : 'border-zinc-800 hover:border-zinc-600'
                     }`}
                   >
                     <img src={img} alt={`${product.name} ${index + 1}`} className="w-full h-full object-cover" />
@@ -92,7 +92,7 @@ const ProductDetail = () => {
                 {product.vehicle}
               </span>
               {product.featured && (
-                <span className="px-3 py-1 bg-[#00BFFF] text-black text-sm font-bold uppercase tracking-wider">
+                <span className="px-3 py-1 bg-blue-600 text-white text-sm font-bold uppercase tracking-wider">
                   Featured
                 </span>
               )}
@@ -140,7 +140,7 @@ const ProductDetail = () => {
 
               <button
                 onClick={handleBuyNow}
-                className="w-full py-4 bg-[#00BFFF] hover:bg-[#0099CC] text-black font-bold uppercase tracking-wider transition-colors"
+                className="w-full py-4 bg-blue-700 hover:bg-blue-600 text-white font-bold uppercase tracking-wider transition-colors"
               >
                 Buy Now
               </button>
@@ -156,7 +156,7 @@ const ProductDetail = () => {
                 <ul className="space-y-2">
                   {product.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-3 text-zinc-400">
-                      <span className="text-[#00BFFF] mt-1 flex-shrink-0">▸</span>
+                      <span className="text-blue-600 mt-1 flex-shrink-0">▸</span>
                       <span>{feature}</span>
                     </li>
                   ))}
@@ -208,14 +208,14 @@ const ProductDetail = () => {
                 <Link
                   key={p.id}
                   to={`/shop/${p.id}`}
-                  className="bg-zinc-900 border border-zinc-800 hover:border-[#00BFFF] transition-colors group"
+                  className="bg-zinc-900 border border-zinc-800 hover:border-blue-600 transition-colors group"
                 >
                   <div className="aspect-[4/3] overflow-hidden">
                     <img src={p.thumbnail} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
                   <div className="p-4">
-                    <p className="font-bold group-hover:text-[#00BFFF] transition-colors">{p.name}</p>
-                    <p className="text-[#00BFFF] font-bold mt-1">{formatPrice(p.price)}</p>
+                    <p className="font-bold group-hover:text-blue-600 transition-colors">{p.name}</p>
+                    <p className="text-blue-600 font-bold mt-1">{formatPrice(p.price)}</p>
                   </div>
                 </Link>
               ))}
