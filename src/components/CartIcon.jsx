@@ -9,7 +9,7 @@ const CartIcon = ({ className = '' }) => {
   return (
     <Link
       to="/cart"
-      className={`relative inline-flex items-center justify-center p-2 text-white hover:text-[#00BFFF] transition-colors ${className}`}
+      className={`relative inline-flex items-center justify-center p-2 text-white hover:text-blue-600 transition-colors ${className}`}
       aria-label={`Cart (${itemCount} items)`}
     >
       {/* Cart SVG */}
@@ -20,7 +20,7 @@ const CartIcon = ({ className = '' }) => {
 
       {/* Badge */}
       {itemCount > 0 && (
-        <span className="absolute -top-1 -right-1 bg-[#00BFFF] text-black text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1 leading-none">
+        <span className="absolute -top-1 -right-1 bg-blue-600 text-white text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1 leading-none">
           {itemCount > 99 ? '99+' : itemCount}
         </span>
       )}
